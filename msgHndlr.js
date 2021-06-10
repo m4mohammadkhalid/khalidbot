@@ -14,7 +14,7 @@ const { spawn, exec } = require('child_process')
 const nhentai = require('nhentai-js')
 const { API } = require('nhentai-api')
 const { liriklagu, quotemaker, randomNimek, fb, sleep, jadwalTv, ss } = require('./lib/functions')
-const { help, snk, info, donate, readme, listChannel } = require('./lib/help')
+const { help, snk, info, donate, readme,hi, listChannel } = require('./lib/help')
 const { stdout } = require('process')
 const nsfw_ = JSON.parse(fs.readFileSync('./lib/NSFW.json'))
 const welkom = JSON.parse(fs.readFileSync('./lib/welcome.json'))
@@ -34,7 +34,7 @@ module.exports = msgHandler = async (client, message) => {
         const args =  commands.split(' ')
 
         const msgs = (message) => {
-            if (command.startsWith('!')) {
+            if (command.startsWith('')) {
                 if (message.length >= 10){
                     return `${message.substr(0, 15)}`
                 }else{
@@ -134,8 +134,8 @@ module.exports = msgHandler = async (client, message) => {
                 }
             }
             break
-        case '!donasi':
-        case '!donate':
+        case 'donasi':
+        case 'donate':
             client.sendLinkWithAutoPreview(from, 'https://saweria.co/donate/mhankbarbar', donate)
             break
         case '!tts':
@@ -761,17 +761,20 @@ module.exports = msgHandler = async (client, message) => {
             skya_ = skya.data
             client.reply(from, `➸ *Quotes* : ${skya_.quote}\n➸ *Character* : ${skya_.character}\n➸ *Anime* : ${skya_.anime}`, id)
             break
-        case '!meme':
+        case 'meme':
             const response = await axios.get('https://meme-api.herokuapp.com/gimme/wholesomeanimemes');
             const { postlink, title, subreddit, url, nsfw, spoiler } = response.data
             client.sendFileFromUrl(from, `${url}`, 'meme.jpg', `${title}`)
             break
-        case '!help':
+        case 'help':
             client.sendText(from, help)
             break
-        case '!readme':
+        case 'readme':
             client.reply(from, readme, id)
             break
+            case 'hi':
+                client.reply(from, hi, id)
+                break
         case '!info':
             client.sendLinkWithAutoPreview(from, 'https://github.com/mhankbarbar/whatsapp-bot', info)
             break
